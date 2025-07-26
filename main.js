@@ -1,16 +1,15 @@
 const { insertGame } = require('./cosmosService.js');
 
-const game = {
-  RowKey: "GAME_20250801_LegiaLech",
-  GameHome: "Raków Częstochowa",
-  GameAway: "Wisła Płock",
-  PartitionKey: "PL_Ekstraklasa"
-};
+const games = [];
 
-insertGame(game).then(success => {
-  if (success) {
-    console.log('✅ Insert succeeded.');
-  } else {
-    console.log('❗ Insert failed.');
+(async () => {
+  let successCount = 0;
+  let failureCount = 0;
+
+  for (const game of games) {
+    const result = await insertGame(game);
+    result ? successCount++ : failureCount++;
   }
-});
+
+  console.log(`\n✅ Done! Inserted ${successCount} games. Failed: ${failureCount}.`);
+})();
