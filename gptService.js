@@ -10,13 +10,13 @@ const openai = new OpenAI({
  * @param {string} prompt - The question or message you want to ask.
  * @param {string} model - Optional: default to gpt-4o
  */
-async function askGPT(prompt, model = 'gpt-4o') {
+async function askGPT(prompt, model = 'gpt-4.1') {
   try {
     const chat = await openai.chat.completions.create({
       model,
       messages: [
-          { role: 'system', content: 'I want a prediction for an upcoming football match' },
-          { role: 'user', content: prompt }
+        { role: 'system', content: 'I want a prediction for an upcoming football match' },
+        { role: 'user', content: prompt }
       ],
       temperature: 0.7,
       max_tokens: 500
@@ -30,4 +30,14 @@ async function askGPT(prompt, model = 'gpt-4o') {
   }
 }
 
-module.exports = { askGPT };
+
+function getMatchPrompt(home, away) {
+  return matchPrompt = `### Match Details:
+
+* **League:**  Poland Ekstraklasa
+* **Fixture:** ${home} - ${away}
+
+---`
+};
+
+module.exports = { askGPT, getMatchPrompt };
