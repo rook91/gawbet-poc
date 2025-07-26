@@ -1,37 +1,8 @@
-const { TableClient } = require('@azure/data-tables');
-const { askGpt4_1, getMatchPrompt } = require('./gptService');
-const secrets = require('./secrets/secrets.json');
+const { getTomorrowGames } = require('./db/cosmosService');
+const { askGpt4_1, getMatchPrompt } = require('./gpt/gptService');
 const { promptIntro, promptExpectedOutput } = require('./const');
 
-const connectionString = secrets.COSMOS_TABLE_PRIMARY_CONNECTION_STRING;
-const gameTableName = 'Game';
-
-function getTomorrowDateStr() {
-  const now = new Date();
-  now.setDate(now.getDate() + 1);
-
-  return now.toISOString().split('T')[0];
-}
-
-function getTableClient(tableName) {
-  return TableClient.fromConnectionString(connectionString, tableName);
-}
-
-async function getTomorrowGames() {
-  const client = getTableClient(gameTableName);
-  const tomorrow = getTomorrowDateStr();
-
-  const entities = client.listEntities();
-
-  const games = [];
-  for await (const game of entities) {
-    if (game.GameDate === tomorrow) {
-      games.push(game);
-    }
-  }
-
-  return games;
-}
+console.log('AA');
 
 (async () => {
   const games = await getTomorrowGames();

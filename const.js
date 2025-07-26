@@ -20,3 +20,7 @@ export const promptExpectedOutput = `
 ### **Expected Output Format:**
 **Motor Lublin 0-1 Śląsk Wrocław**
 `;
+
+export const GAME_TABLE_NAME = 'Game';
+
+export const PREDICTION_TABLE_NAME = 'Prediction';

@@ -1,7 +1,7 @@
 // cosmosService.js
 const { TableClient } = require('@azure/data-tables');
-const secrets = require('./secrets/secrets.json');
-
+const secrets = require('../secrets/secrets.json');
+const {GAME_TABLE_NAME, PREDICTION_TABLE_NAME} = require('../const');
 const connectionString = secrets.COSMOS_TABLE_PRIMARY_CONNECTION_STRING;
 
 function getTableClient(tableName) {
@@ -29,7 +29,7 @@ function isValidGameEntity(entity) {
 }
 
 async function insertGame(game) {
-    const client = getTableClient('Game');
+    const client = getTableClient(GAME_TABLE_NAME);
 
     if (!isValidGameEntity(game)) {
         console.error(`❌ Skipping insert — invalid game entity (${game.RowKey || 'unknown'})`);
@@ -73,7 +73,7 @@ function isValidPredictionEntity(entity) {
 }
 
 async function insertPrediction(pred) {
-    const client = getTableClient('Prediction');
+    const client = getTableClient(PREDICTION_TABLE_NAME);
 
     if (!isValidPredictionEntity(pred)) {
         console.error(`❌ Skipping insert — invalid prediction entity (${pred.RowKey || 'unknown'})`);
@@ -91,4 +91,27 @@ async function insertPrediction(pred) {
     }
 }
 
-module.exports = { insertGame, insertPrediction };
+function getTomorrowDateStr() {
+    const now = new Date();
+    now.setDate(now.getDate() + 1);
+
+    return now.toISOString().split('T')[0];
+}
+
+async function getTomorrowGames() {
+    const client = getTableClient(GAME_TABLE_NAME);
+    const tomorrow = getTomorrowDateStr();
+
+    const entities = client.listEntities();
+
+    const games = [];
+    for await (const game of entities) {
+        if (game.GameDate === tomorrow) {
+            games.push(game);
+        }
+    }
+
+    return games;
+}
+
+module.exports = { insertGame, insertPrediction, getTomorrowGames };
