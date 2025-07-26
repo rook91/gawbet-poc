@@ -10,7 +10,7 @@ const openai = new OpenAI({
  * @param {string} prompt - The question or message you want to ask.
  * @param {string} model - Optional: default to gpt-4o
  */
-async function askGPT(prompt, model = 'gpt-4.1') {
+async function askGpt4_1(prompt, model = 'gpt-4.1') {
   try {
     const chat = await openai.chat.completions.create({
       model,
@@ -40,4 +40,4 @@ function getMatchPrompt(home, away) {
 ---`
 };
 
-module.exports = { askGPT, getMatchPrompt };
+module.exports = { askGpt4_1, getMatchPrompt };
