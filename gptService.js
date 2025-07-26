@@ -1,0 +1,33 @@
+const { OpenAI } = require('openai');
+const secrets = require('./secrets/secrets.json');
+
+const openai = new OpenAI({
+  apiKey: secrets.OPENAI_API_KEY
+});
+
+/**
+ * Sends a prompt to GPT and returns the response content.
+ * @param {string} prompt - The question or message you want to ask.
+ * @param {string} model - Optional: default to gpt-4o
+ */
+async function askGPT(prompt, model = 'gpt-4o') {
+  try {
+    const chat = await openai.chat.completions.create({
+      model,
+      messages: [
+          { role: 'system', content: 'I want a prediction for an upcoming football match' },
+          { role: 'user', content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 500
+    });
+
+    const reply = chat.choices[0].message.content;
+    return reply;
+  } catch (err) {
+    console.error('❌ GPT request failed:', err.message);
+    return null;
+  }
+}
+
+module.exports = { askGPT };

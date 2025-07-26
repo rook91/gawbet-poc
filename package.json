@@ -1,7 +1,8 @@
 {
   "version": "0.0.1",
   "scripts": {
-    "add-game": "node ./main.js"
+    "add-game": "node ./main.js",
+    "askGPT": "node ./askGPT.js"
   },
   "dependencies": {
     "@azure/data-tables": "^13.3.1",
