@@ -1,6 +1,6 @@
 // cosmosService.js
 const { TableClient } = require('@azure/data-tables');
-const secrets = require('./secrets/PrimaryConnectionString.json');
+const secrets = require('./secrets/secrets.json');
 
 const connectionString = secrets.COSMOS_TABLE_PRIMARY_CONNECTION_STRING;
 
