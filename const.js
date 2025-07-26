@@ -1,37 +1,26 @@
-export const promptIntro = `I want a prediction for an upcoming football match. Please follow the rules below **strictly**:
+export const chatGPTSystemContent = "I want a prediction for an upcoming football match";
+
+export const promptIntro = `Please follow the rules below **strictly**:
 
 ---
 
 #### **Source Requirements:**
-
-1. Use **only sources** which are relevant to the countries from where the clubs come from
-   * **Do not use any U.S.-based sources** under any circumstances.
-
-2. Check a **minimum of four** independent sources (preferably from different domains).
+1. Use **only sources** which are relevant to the countries from where the clubs come from. 
+2. **Do not use any U.S.-based sources** under any circumstances.
+3. Check a **minimum of four** independent sources (preferably from different domains).
 
 ---
 
 #### **Output Requirements:**
-
-1. Begin with a brief **summary** highlighting the general consensus across sources.
-2. Provide **one single final score prediction**, based on the most common or most credible outcome.
-3. Present a **prediction table** listing each source and its predicted score.
+1. Provide **one single final score prediction**, based on the most common or most credible outcome.
 
 ---`;
 
-export const promptExpectedOutput = `### **Expected Output Format:**
-
-**Summary:**
-Most sources suggest a balanced game, slightly favoring an away win with minimal goals scored.
-
-**Final Score Prediction:**
+export const promptExpectedOutput = `
+### **Expected Output Format:**
 **Motor Lublin 0-1 Śląsk Wrocław**
+`;
 
-**\[Prediction Table]**
+export const GAME_TABLE_NAME = 'Game';
 
-| Source   | Predicted Score |
-| -------- | --------------- |
-| Source 1 | 0-1             |
-| Source 2 | 0-1             |
-| Source 3 | 1-0             |
-| Source 4 | 0-1             |`;
+export const PREDICTION_TABLE_NAME = 'Prediction';

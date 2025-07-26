@@ -1,7 +1,7 @@
 {
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
-    "add-game": "node ./main.js",
+    "addGame": "node ./addGame.js",
     "askGPT": "node ./askGPT.js"
   },
   "dependencies": {
