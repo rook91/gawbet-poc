@@ -1,5 +1,7 @@
-require('dotenv').config();
-const { OpenAI } = require('openai');
+import dotenv from 'dotenv';
+import { OpenAI } from 'openai';
+
+dotenv.config();
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -32,7 +34,7 @@ async function askGpt4_1(prompt, model = 'gpt-4.1') {
 
 
 function getMatchPrompt(home, away) {
-  return matchPrompt = `### Match Details:
+  return `### Match Details:
 
 * **League:**  Poland Ekstraklasa
 * **Fixture:** ${home} - ${away}
@@ -40,4 +42,4 @@ function getMatchPrompt(home, away) {
 ---`
 };
 
-module.exports = { askGpt4_1, getMatchPrompt };
+export { askGpt4_1, getMatchPrompt };

@@ -21,9 +21,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build app (optional)
-        run: npm run build || echo "No build step"
-
       - name: Login to Azure
         uses: azure/login@v1
         with:
