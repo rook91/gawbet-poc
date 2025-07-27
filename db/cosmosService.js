@@ -1,8 +1,7 @@
-// cosmosService.js
+require('dotenv').config();
 const { TableClient } = require('@azure/data-tables');
-const secrets = require('../secrets/secrets.json');
 const {GAME_TABLE_NAME, PREDICTION_TABLE_NAME} = require('../const');
-const connectionString = secrets.COSMOS_TABLE_PRIMARY_CONNECTION_STRING;
+const connectionString = process.env.COSMOS_TABLE_PRIMARY_CONNECTION_STRING;
 
 function getTableClient(tableName) {
     return TableClient.fromConnectionString(connectionString, tableName);
