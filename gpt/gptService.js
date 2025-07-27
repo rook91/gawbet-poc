@@ -1,8 +1,8 @@
+require('dotenv').config();
 const { OpenAI } = require('openai');
-const secrets = require('../secrets/secrets.json');
 
 const openai = new OpenAI({
-  apiKey: secrets.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY
 });
 
 /**
