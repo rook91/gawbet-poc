@@ -1,4 +1,4 @@
-import { insertGame } from './db/cosmosService.js';
+import { insertGame } from './cosmosService.js';
 
 export async function addGames() {
   let successCount = 0;

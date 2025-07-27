@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser  from'body-parser';
 import { askGPT } from './askGPT.js';
-import { addGames } from './addGame.js';
+import { addGames } from './db/addGame.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;

@@ -74,6 +74,30 @@ function isValidPredictionEntity(entity) {
     return true;
 }
 
+function isValidPredictionEntity(entity) {
+    const requiredFields = [
+        'PartitionKey',
+        'RowKey',
+        'ChatGPT4oScore',
+        'ChatGPT4oPrediction',
+        'predictzScore',
+        'predictzPrediction',
+        'forebetScore',
+        'forebetPrediction',
+        'PredictedScore',
+        'PredictedResult',
+    ];
+
+    const missing = requiredFields.filter(field => !(field in entity));
+
+    if (missing.length > 0) {
+        console.error(`❌ Invalid prediction object. Missing fields: ${missing.join(', ')}`);
+        return false;
+    }
+
+    return true;
+}
+
 async function insertPrediction(pred) {
     const client = getTableClient(PREDICTION_TABLE_NAME);
 
