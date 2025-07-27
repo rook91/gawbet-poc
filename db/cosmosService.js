@@ -1,6 +1,9 @@
-require('dotenv').config();
-const { TableClient } = require('@azure/data-tables');
-const {GAME_TABLE_NAME, PREDICTION_TABLE_NAME} = require('../const');
+import dotenv from 'dotenv';
+import { TableClient } from '@azure/data-tables';
+import {GAME_TABLE_NAME, PREDICTION_TABLE_NAME} from '../const.js';
+
+dotenv.config();
+
 const connectionString = process.env.COSMOS_TABLE_PRIMARY_CONNECTION_STRING;
 
 function getTableClient(tableName) {
@@ -113,4 +116,4 @@ async function getTomorrowGames() {
     return games;
 }
 
-module.exports = { insertGame, insertPrediction, getTomorrowGames };
+export { insertGame, insertPrediction, getTomorrowGames };

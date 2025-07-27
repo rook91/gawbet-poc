@@ -1,10 +1,8 @@
-const { getTomorrowGames } = require('./db/cosmosService');
-const { askGpt4_1, getMatchPrompt } = require('./gpt/gptService');
-const { promptIntro, promptExpectedOutput } = require('./const');
+import { getTomorrowGames } from './db/cosmosService.js';
+import { askGpt4_1, getMatchPrompt } from './gpt/gptService.js';
+import { promptIntro, promptExpectedOutput } from './const.js';
 
-console.log('AA');
-
-(async () => {
+export async function askGPT () {
   const games = await getTomorrowGames();
 
   if (games.length === 0) {
@@ -19,8 +17,10 @@ console.log('AA');
     const response = await askGpt4_1(prompt);
     if (response) {
       console.log(response);
+      return response;
     } else {
       console.log('❌ Brak odpowiedzi od GPT.');
+      return 'Brak odpowiedzi od GPT.';
     }
   }
-})();
+};
