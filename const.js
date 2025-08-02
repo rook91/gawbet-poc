@@ -35,32 +35,3 @@ export const GAME_TABLE_NAME = 'Game';
 
 export const PREDICTION_TABLE_NAME = 'Prediction';
 
-export function extractDatafromOddsPortal() {
-	const eventRows = document.getElementsByClassName("eventRow");
-	const results = [];
-
-	for (let i = 0; i < eventRows.length; i++) {
-		const row = eventRows[i];
-
-		// Find the first <div data-testid="time-item"> and get its <p> child
-		const timeDiv = row.querySelector('div[data-testid="time-item"]');
-		const timeP = timeDiv ? timeDiv.querySelector('p') : null;
-		const GameTime = timeP ? timeP.innerText.trim() : null;
-
-		// Find both <p class="participant-name">
-		const teamPs = row.querySelectorAll('p.participant-name');
-		const GameHome = teamPs[0] ? teamPs[0].innerText.trim() : null;
-		const GameAway = teamPs[1] ? teamPs[1].innerText.trim() : null;
-
-		results.push({
-			RowKey: `game030825_${i+1}`,
-			GameTime,
-			GameHome,
-			GameAway,
-			GameDate: "2025-08-03",
-			PartitionKey: "gawbet_sierpien_2025"
-		});
-	}
-
-	console.log(results);
-}
