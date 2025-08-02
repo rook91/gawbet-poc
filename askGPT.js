@@ -18,9 +18,9 @@ export async function askGPT () {
     const response = await askGpt4_1(prompt);
     if (response) {
       const parsedRes = JSON.parse(response);
-      parsedRes.RowKey = game.RowKey;
+      parsedRes.rowKey = game.rowKey;
       responses.push(parsedRes);
-      console.log(`Dodano analizę od GPT dla ${game.RowKey}`);
+      console.log(`✅ Dodano analizę od GPT dla ${game.RowKey}`);
     } else {
       console.log('❌ Brak odpowiedzi od GPT.');
     }
