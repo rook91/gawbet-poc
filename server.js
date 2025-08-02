@@ -26,12 +26,10 @@ app.get('/ask-gpt', async (req, res) => {
 
 // 3) Add games (PUT)
 app.put('/games', async (req, res) => {
-    const result = await addGames(req.body || []);
-    results.push({ gameId: game.RowKey, success: result });
+  const result = await addGames(req.body || []);
   
   res.json({
-    message: `Games inserted.`,
-    results
+    message: `Games inserted.`
   });
 });
 

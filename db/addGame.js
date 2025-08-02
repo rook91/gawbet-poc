@@ -1,6 +1,6 @@
 import { insertGame } from './cosmosService.js';
 
-export async function addGames() {
+export async function addGames(games) {
   let successCount = 0;
   let failureCount = 0;
 
